@@ -1,0 +1,25 @@
+{% extends 'task/base.html' %}
+{% block content %}
+<h2>Students</h2>
+
+<table border="1">
+<tr>
+    <th>S.No</th>
+    <th>Name</th>
+    <th>Branch</th>
+    <th>Age</th>
+    <th>Vote</th>
+</tr>
+
+{% for s in students %}
+<tr>
+    <td>{{ s.sno }}</td>
+    <td>{{ s.name }}</td>
+    <td>{{s.branch}}</td>
+    <td>{{ s.age }}</td>
+    <td>{% if s.age >= 18 %}Yes{% else %}No{% endif %}</td>
+</tr>
+{% endfor %}
+
+</table>
+{% endblock %}
