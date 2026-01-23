@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>Login Form</h1>
-    <form action="/loginverification" method="POST">
+    <form action="/loginverification" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <label for="username">username</label>
         <input type="text" name="username" id="username">

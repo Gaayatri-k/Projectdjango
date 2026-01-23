@@ -47,7 +47,7 @@ def loginverification(request):
     return HttpResponse("Verifying Details.....")
 def signup(request):
     if request.method == 'POST':
-        formdata = signupForm(request.POST)
+        formdata = signupForm(request.POST,request.FILES)
         if formdata.is_valid():
             formdata.save()
             return HttpResponse("Signup successful!")

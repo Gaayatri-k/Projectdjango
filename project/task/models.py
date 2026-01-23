@@ -34,7 +34,7 @@ class hello(models.Model):
     gender = models.CharField(max_length=10,choices=GENDER)
     dept = models.CharField(max_length=10,choices=DEPT)
     year = models.CharField(max_length=5,choices=YEAR)
-    roll = models.CharField(max_length=20,unique=True)
+    roll = models.CharField(max_length=10,unique=True)
     address = models.TextField(null=True, blank=True)
     state = models.CharField(max_length=5,choices=STATE)
     pin = models.CharField(max_length=6)
