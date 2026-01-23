@@ -2,8 +2,10 @@
 {% block content %}
 <h2>Colleges List</h2>
 <ul>
-    <li>SVECW</li>
-    <li>VIT</li>
-    <li>BVRIT</li>
+    {% for key,value in data.items %}
+    <li>
+        <a href="{% url 'collegesdetails' key %}"> {{value.name}} </a>
+    </li>
+    {% endfor %}
 </ul>
 {% endblock %}
