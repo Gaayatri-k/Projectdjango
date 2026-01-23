@@ -23,7 +23,6 @@ class signupForm(forms.ModelForm):
         widgets = {
             'dob': forms.DateInput(attrs={'type': 'date', 'max': now().date()}),
             'gender': forms.RadioSelect(),
-            'dept': forms.Select(),
             'year': forms.Select(),
             'address': forms.Textarea(attrs={'rows': 3}),
             'mode': forms.Select(),

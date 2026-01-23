@@ -1,16 +1,14 @@
 from django.db import models
 
 # Create your models here.
+class Department(models.Model):
+    name = models.CharField(max_length=50, unique=True)
+    def __str__(self):
+        return self.name
 class hello(models.Model):
     GENDER=[('Male','Male'),
         ('Female','Female'),
         ('Other','Other'),
-    ]
-    DEPT=[('IT','IT'),
-        ('CSE','CSE'),
-        ('ECE','ECE'),
-        ('EEE','EEE'),
-        ('MECH','MECH'),
     ]
     YEAR=[('1st','1st'),
         ('2nd','2nd'),
@@ -32,7 +30,7 @@ class hello(models.Model):
     mobile = models.CharField(max_length=10)
     dob = models.DateField(null=True, blank=True)
     gender = models.CharField(max_length=10,choices=GENDER)
-    dept = models.CharField(max_length=10,choices=DEPT)
+    dept = models.ForeignKey(Department,on_delete=models.CASCADE)
     year = models.CharField(max_length=5,choices=YEAR)
     roll = models.CharField(max_length=10,unique=True)
     address = models.TextField(null=True, blank=True)
