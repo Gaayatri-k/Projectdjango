@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
+import email
 from os import path
 from pathlib import Path
 
@@ -125,3 +126,10 @@ STATICFILES_DIRS=[
     BASE_DIR/ 'task/static',
 ]
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = '24b01a1235@svecw.edu.in'
+EMAIL_HOST_PASSWORD = 'ouzw wsqy zbiw gomk'
