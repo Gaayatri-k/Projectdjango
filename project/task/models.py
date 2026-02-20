@@ -40,3 +40,6 @@ class hello(models.Model):
     mode = models.CharField(max_length=10,choices=MODE)
 class studentdata(models.Model):
     name=models.CharField(max_length=20)
+class userdata(models.Model):
+    username=models.CharField(max_length=100)
+    password=models.CharField(max_length=15)

@@ -1,6 +1,8 @@
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.conf import settings
+
+from .models import userdata
 from .forms import signupForm
 from django.core.mail import send_mail
 from django.contrib.auth import authenticate,login
@@ -50,20 +52,29 @@ def loginverification(request):
     # return HttpResponse("Verifying Details.....")
     username=request.POST.get("username")
     password=request.POST.get("password")
-    if username=="":
-        print("Sorry,Enter a username to login.")
-        return HttpResponse("Sorry,Enter a username to login.")
+    user=userdata.objects.filter(username=username,password=password).first()
+    # if not user:
+    #     print("Sorry,Enter a username to login.")
+    #     return HttpResponse("Sorry,Enter a username to login.")
+    if user:
+        # user=authenticate(request,username=username,password=password)
+        request.session['user_id']=user.id
+        request.session['username']=user.username
+        return redirect("welcome")
+        # if user is not None:
+        #     login(request,user)
+        #     return redirect("welcome")
     else:
-        user=authenticate(request,username=username,password=password)
-        if user is not None:
-            login(request,user)
-            return redirect("welcome")
-        else:
             print("Invalid Credentials enter correct username and password")
             return redirect("login")
 def welcome(request):
-    if request.user.is_authenticated:
-        return HttpResponse(f"<h1>Welcome {request.user.username}</h1>")
+    # if request.user.is_authenticated:
+    #     return HttpResponse(f"<h1>Welcome {request.user.username}</h1>")
+    username=request.session.get("username")
+    if not username:
+        return redirect("login")
+    return HttpResponse(f"welcome {username}")
+
 
 def signup(request):
     if request.method == 'POST':
@@ -82,8 +93,8 @@ def email(request):
         send_mail(
             subject,
             message,
-            '24b01a1235@svecw.edu.in',
-            ["gaayatrikademella@gmail.com"],
+            '',
+            [""],
             fail_silently=False,
         )
         return HttpResponse("<h1>Email sent successfully</h1>")
